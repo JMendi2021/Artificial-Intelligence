@@ -57,15 +57,15 @@ for f in range(total_attributes):
 for i in range(len(normalised_td)):
     distance_component = 0
     distance = 0
-    for j in range(total_attributes): #We exclude the last value as that's the class
+    for j in range(total_attributes):
         attribute = normalised_td[i][j]
         new_attribute = normalised_nq[j]
-        if isinstance(attribute,str):
-            if attribute.upper() == new_attribute.upper():
-                distance_component = distance_component + 0
+        if isinstance(attribute,str): #If it's categorical or ordinal, we do not need to find the difference.
+            if attribute == new_attribute:
+                distance_component = distance_component + 0 
             else:
                 distance_component = distance_component + 1
-        else:
+        else: #Only occurs for numerical attributes
             distance_component = distance_component + (attribute - new_attribute)**2
     
     distance = round(math.sqrt(distance_component), 5) #Remove round or change if necessary
