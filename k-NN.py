@@ -48,7 +48,7 @@ normalised_nq = list(new_query)
 
 #Creating a Normalised Input
 for f in range(total_attributes):
-    minmax = list(minmax_dict[f])
+    minmax = deepcopy(minmax_dict[f])
     if not isinstance(new_query[f],str):
         normalised_nq[f] = (new_query[f] - minmax[0])/(minmax[1]-minmax[0])
         
